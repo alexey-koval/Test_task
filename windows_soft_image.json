@@ -26,8 +26,10 @@
     "provisioners": [{
 		"type": "powershell",
 		"scripts": [
-			"soft/windows/base.sh"
+			"soft/windows/docker.ps1",
+            "soft/windows/tc_agent.ps1"
 		]
-	},
+	}
   }]
+
 }
