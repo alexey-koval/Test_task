@@ -1,0 +1,27 @@
+{
+    "builders": [{
+    "type": "virtualbox-iso",
+    "vboxmanage": [
+      [ "modifyvm", "{{.Name}}", "--natpf1", "winrm,tcp,,55985,,5985" ],
+      [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+      [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+    ],
+    "guest_os_type": "Windows10PRO_64",
+    "iso_url": "https://software.download.prss.microsoft.com/dbazure/Win10_21H2_EnglishInternational_x64.iso?t=b334d815-6794-4ec4-b2bd-149f1919bd1c&e=1654777945&h=3b9064e678ebe91eb89da055842501c20ce156c331db9e4358c069e208b5b38c",
+    "iso_checksum": "06fd4a512c5f3e8d16f77ca909c4f20110329b8cdd5ad101e2afc0d58b06d416",
+    "iso_checksum_type": "md5",
+    "communicator": "winrm",
+    "winrm_username": "jetbrains",
+    "winrm_password": "jetbrains",
+    "winrm_port": "55985",
+    "winrm_timeout": "5h",
+    "guest_additions_mode": "disable",
+    "shutdown_command": "C:/windows/system32/sysprep/sysprep.exe /generalize /oobe /unattend:C:/Windows/Panther/Unattend/unattend.xml /quiet /shutdown",
+    "shutdown_timeout": "15m",
+    "floppy_files": [
+      "files/Autounattend.xml",
+      "scripts/boxstarter.ps1",
+      "scripts/package.ps1"
+    ]
+  }]
+}
